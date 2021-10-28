@@ -94,12 +94,27 @@ public class App {
                 System.out.println("Tong Ket: " + student.tongket());
                 System.out.println("----------------------------------------");
             });
-            char CSV_SEPARATOR = ',';
-            //BufferedWriter writer = new BufferedWriter(new FileWriter("my_file.csv"));
+
+            // CREATE CSV
+            createCSV(students);
 
 
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("my_file.csv"))) {
-                students.forEach(student -> {
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public static void createCSV (List<Student> students) {
+        char CSV_SEPARATOR = ',';
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:/Users/duy.nguyen4_onemount/Downloads/my_file.csv"))) {
+            students.forEach(student -> {
+                try {
                     writer.append(student.getName()).append(CSV_SEPARATOR)
                             .append(student.getId()).append(CSV_SEPARATOR)
                             .append(student.getEmail()).append(CSV_SEPARATOR)
@@ -108,18 +123,13 @@ public class App {
                             .append(String.format("%f",student.getLt())).append(CSV_SEPARATOR)
                             .append(String.format("%f",student.getApp())).append(CSV_SEPARATOR)
                             .append(String.format("%f",student.tongket())).append(System.lineSeparator());
-                });
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-
-
     }
 
 
