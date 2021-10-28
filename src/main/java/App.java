@@ -9,16 +9,13 @@ import java.util.Stack;
 public class App {
     public static void main(String[] args) {
 
-
         List<Student> students = new ArrayList<>();
         int count = 0;
         try (BufferedReader bir = new BufferedReader(new FileReader("C:/Users/duy.nguyen4_onemount/Downloads/Data1.csv"))) {
             String line = bir.readLine();
             while (line != null) {
-                // List<String> result = getAddressInfor(line);
 
-                List<String> result = getAddressInfor(line);
-
+                List<String> result = getStudentInfor(line);
 
                 System.out.println(result);
                 System.out.println(result.get(0));
@@ -99,9 +96,6 @@ public class App {
             createCSV(students);
 
 
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -109,20 +103,19 @@ public class App {
 
     }
 
-    public static void createCSV (List<Student> students) {
+    public static void createCSV(List<Student> students) {
         char CSV_SEPARATOR = ',';
-
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:/Users/duy.nguyen4_onemount/Downloads/my_file.csv"))) {
             students.forEach(student -> {
                 try {
                     writer.append(student.getName()).append(CSV_SEPARATOR)
                             .append(student.getId()).append(CSV_SEPARATOR)
                             .append(student.getEmail()).append(CSV_SEPARATOR)
-                            .append(String.format("%f",student.getBonus())).append(CSV_SEPARATOR)
-                            .append(String.format("%f",student.getReport())).append(CSV_SEPARATOR)
-                            .append(String.format("%f",student.getLt())).append(CSV_SEPARATOR)
-                            .append(String.format("%f",student.getApp())).append(CSV_SEPARATOR)
-                            .append(String.format("%f",student.tongket())).append(System.lineSeparator());
+                            .append(String.format("%f", student.getBonus())).append(CSV_SEPARATOR)
+                            .append(String.format("%f", student.getReport())).append(CSV_SEPARATOR)
+                            .append(String.format("%f", student.getLt())).append(CSV_SEPARATOR)
+                            .append(String.format("%f", student.getApp())).append(CSV_SEPARATOR)
+                            .append(String.format("%f", student.tongket())).append(System.lineSeparator());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -132,8 +125,7 @@ public class App {
         }
     }
 
-
-    public static List getAddressInfor(String line) {
+    public static List getStudentInfor(String line) {
         List<String> result = new ArrayList<>();
         Stack<Character> stack = new Stack<>();
         StringBuilder str = new StringBuilder();
@@ -157,6 +149,14 @@ public class App {
         return result;
 
     }
+//Câu 2
+// 1. Cho biết chuỗi regular-expression để capture được các địa chỉ gmail và
+// outlook
+//2. Xây dựng hàm liệt kê thông tin các sinh viên có email là gmail
+//3. Chuyển thông tin các sinh viên có email là outlook (II.2) vào tập
+//tin outlook.bin, sử dụng kỹ thuật Serialization.
+//4. Xây dựng hàm đọc thông tin các sinh viên ở II.3 lên màn hình console
 
+    String regex1 = "^[a-z0-9](\\.?[a-z0-9]){5,}@(gmail|outlook)\\.com$\n";
 
 }
