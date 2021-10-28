@@ -103,9 +103,11 @@ public class App {
                     writer.append(student.getName()).append(CSV_SEPARATOR)
                             .append(student.getId()).append(CSV_SEPARATOR)
                             .append(student.getEmail()).append(CSV_SEPARATOR)
-                            .append(student.getBonus().ToString()).append(CSV_SEPARATOR)
-                            .append(student.getReport()).append(CSV_SEPARATOR)
-                            .append(student.tongket().getCountry()).append(System.lineSeparator());
+                            .append(String.format("%f",student.getBonus())).append(CSV_SEPARATOR)
+                            .append(String.format("%f",student.getReport())).append(CSV_SEPARATOR)
+                            .append(String.format("%f",student.getLt())).append(CSV_SEPARATOR)
+                            .append(String.format("%f",student.getApp())).append(CSV_SEPARATOR)
+                            .append(String.format("%f",student.tongket())).append(System.lineSeparator());
                 });
             } catch (IOException ex) {
                 ex.printStackTrace();
